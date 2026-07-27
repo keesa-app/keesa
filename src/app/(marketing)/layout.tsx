@@ -1,15 +1,23 @@
+import { SiteFooter } from "@/components/marketing/site-footer";
+import { SiteHeader } from "@/components/marketing/site-header";
+
 /**
  * Marketing surface.
  *
- * Wraps public, indexable marketing pages (home, pricing, about, …). This is
- * where the shared marketing chrome — header, footer, nav — will live once
- * those pages are built. For now it is a pass-through so the structure is
- * reserved without imposing any design.
+ * Provides the shared marketing chrome — sticky nav header and footer — around
+ * every public, indexable marketing page. Page-specific content renders in
+ * `main` between them.
  */
 export default function MarketingLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return children;
+  return (
+    <>
+      <SiteHeader />
+      <main className="flex-1">{children}</main>
+      <SiteFooter />
+    </>
+  );
 }

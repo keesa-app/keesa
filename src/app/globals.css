@@ -1,26 +1,118 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* ---------------------------------------------------------------------------
+   Keesa brand theme
+   Single warm-light theme per the approved design. Tokens below drive Tailwind
+   utilities (e.g. bg-canvas, text-ink, font-display, shadow-rest).
+--------------------------------------------------------------------------- */
+@theme {
+  /* Typography — Figtree for display/headings, Instrument Sans for body. */
+  --font-sans:
+    var(--font-instrument), system-ui, -apple-system, BlinkMacSystemFont,
+    sans-serif;
+  --font-display: var(--font-figtree), system-ui, sans-serif;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  /* Core palette */
+  --color-canvas: #fbfbf9;
+  --color-surface: #ffffff;
+  --color-ink: #16352b;
+  --color-ink-deep: #0f2820;
+  --color-body: #46504a;
+  --color-soft: #6b7770;
+  --color-accent: #ffc94a;
+  --color-accent-strong: #f7be33;
+  --color-mint: #9fbbae;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  /* Neutral surfaces / hairlines used structurally */
+  --color-cream: #fffdf6;
+  --color-butter: #fff3ce;
+  --color-line: #efede7;
+  --color-hairline: #f1f0ec;
+  --color-sand: #f4f2ec;
+  --color-shell: #efe9de;
+
+  /* Reused elevation system (source design shadows, kept exact) */
+  --shadow-pill:
+    0 2px 6px rgba(22, 53, 43, 0.05), 0 14px 34px rgba(22, 53, 43, 0.07);
+  --shadow-soft:
+    0 2px 6px rgba(22, 53, 43, 0.05), 0 12px 30px rgba(22, 53, 43, 0.08);
+  --shadow-soft-hover:
+    0 4px 12px rgba(22, 53, 43, 0.09), 0 18px 40px rgba(22, 53, 43, 0.11);
+  --shadow-rest:
+    0 2px 6px rgba(22, 53, 43, 0.04), 0 16px 38px rgba(22, 53, 43, 0.07);
+  --shadow-float:
+    0 3px 8px rgba(22, 53, 43, 0.05), 0 20px 44px rgba(22, 53, 43, 0.09);
+  --shadow-card:
+    0 2px 6px rgba(22, 53, 43, 0.04), 0 12px 28px rgba(22, 53, 43, 0.06);
+  --shadow-panel:
+    0 4px 12px rgba(22, 53, 43, 0.05), 0 30px 64px rgba(22, 53, 43, 0.09);
+  --shadow-lift:
+    0 4px 10px rgba(22, 53, 43, 0.06), 0 30px 64px rgba(22, 53, 43, 0.1);
+  --shadow-hero:
+    0 8px 24px rgba(22, 53, 43, 0.08), 0 48px 90px rgba(22, 53, 43, 0.14);
+  --shadow-gather:
+    0 6px 18px rgba(22, 53, 43, 0.07), 0 40px 80px rgba(22, 53, 43, 0.13);
+  --shadow-scatter:
+    0 2px 6px rgba(22, 53, 43, 0.05), 0 12px 26px rgba(22, 53, 43, 0.07);
+  --shadow-badge:
+    0 4px 12px rgba(22, 53, 43, 0.07), 0 26px 54px rgba(22, 53, 43, 0.12);
+  --shadow-badge-dark:
+    0 6px 18px rgba(22, 53, 43, 0.2), 0 30px 60px rgba(22, 53, 43, 0.2);
+  --shadow-pricing-dark:
+    0 8px 24px rgba(22, 53, 43, 0.16), 0 48px 90px rgba(22, 53, 43, 0.2);
+  --shadow-faq-open:
+    0 4px 12px rgba(22, 53, 43, 0.06), 0 26px 56px rgba(22, 53, 43, 0.1);
+  --shadow-nav-pill: 0 3px 10px rgba(22, 53, 43, 0.16);
+  --shadow-cta: 0 4px 14px rgba(22, 53, 43, 0.2);
+  --shadow-cta-yellow: 0 4px 14px rgba(0, 0, 0, 0.18);
+
+  /* Floating badge animations from the hero mockup */
+  --animate-float-a: kFloat 7.4s ease-in-out infinite;
+  --animate-float-b: kFloatB 8.6s ease-in-out 0.5s infinite;
+
+  @keyframes kFloat {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+  @keyframes kFloatB {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-12px);
+    }
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: #ffe9a8;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+  }
 }

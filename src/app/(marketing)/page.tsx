@@ -1,17 +1,38 @@
-/**
- * Root route placeholder.
- *
- * Intentionally minimal and un-designed — the real landing page is a later
- * task. This exists only so `/` resolves and the app deploys cleanly on top
- * of the foundation. Replace it when the landing page is built.
- */
+import type { Metadata } from "next";
+
+import { DecisionSection } from "@/components/marketing/decision-section";
+import { FaqSection } from "@/components/marketing/faq-section";
+import { FinalCta } from "@/components/marketing/final-cta";
+import { Hero } from "@/components/marketing/hero";
+import { HowItWorks } from "@/components/marketing/how-it-works";
+import { PricingSection } from "@/components/marketing/pricing-section";
+import { ProblemSection } from "@/components/marketing/problem-section";
+import { RoomsSection } from "@/components/marketing/rooms-section";
+import { TimelineSection } from "@/components/marketing/timeline-section";
+
+export const metadata: Metadata = {
+  description:
+    "One calm workspace to plan, research, compare and decide everything before your baby arrives. Explore your plan free; $99 once per pregnancy to save it — no subscription.",
+  alternates: { canonical: "/" },
+  openGraph: {
+    url: "/",
+    description:
+      "One calm workspace to plan, research, compare and decide everything before your baby arrives. Explore free; $99 once per pregnancy.",
+  },
+};
+
 export default function HomePage() {
   return (
-    <main className="mx-auto flex min-h-screen max-w-xl flex-col items-center justify-center gap-2 p-8 text-center">
-      <h1 className="text-2xl font-semibold">Keesa</h1>
-      <p className="text-sm opacity-70">
-        The planning workspace for expecting parents. Foundation initialized.
-      </p>
-    </main>
+    <>
+      <Hero />
+      <ProblemSection />
+      <HowItWorks />
+      <RoomsSection />
+      <DecisionSection />
+      <TimelineSection />
+      <PricingSection />
+      <FaqSection />
+      <FinalCta />
+    </>
   );
 }
